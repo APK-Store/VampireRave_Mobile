@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res/com.vampirerave.free"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<FrameLayout android:id="@+id/FrameLayout"
+		android:layout_width="wrap_content" android:layout_height="wrap_content">
+		<com.admob.android.ads.AdView android:id="@+id/ad"
+			android:visibility="gone" android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true" app:backgroundColor="#000000"
+			app:primaryTextColor="#FFFFFF" app:secondaryTextColor="#CCCCCC"
+			app:keywords="null" />
+	</FrameLayout>
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+
+
+
+		<ProgressBar android:id="@+id/ProgressBar01"
+	android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		<WebView android:layout_width="wrap_content"
+			android:layout_height="fill_parent" android:id="@+id/WebView" />
+
+
+	</RelativeLayout>
+         
+
+
+</FrameLayout>

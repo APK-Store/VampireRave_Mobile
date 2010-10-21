@@ -1,0 +1,84 @@
+﻿body {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color:#FFFF00;
+	background-color:#000000;
+	font-family: Arial, serif;
+	font-size: 10px;
+	
+	SCROLLBAR-FACE-COLOR:#000000;
+	SCROLLBAR-HIGHLIGHT-COLOR: #000000;
+	SCROLLBAR-SHADOW-COLOR: #000000;
+	SCROLLBAR-3DLIGHT-COLOR: #000000;
+	SCROLLBAR-ARROW-COLOR: #000000;
+	SCROLLBAR-TRACK-COLOR: #000000;
+	SCROLLBAR-DARKSHADOW-COLOR: #000000;
+
+    }
+	
+	
+    a  { color:#0000FF; }
+    a:visited { color:#800080; }
+    a:hover { color:#008000; }
+    a:active { color:#FF0000; }
+	
+	H1 { margin-top: 0in; margin-bottom: 0in; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.02in 0in; font-family: "Arial", serif; font-size: 12pt; page-break-before: auto; page-break-after: auto }
+    H2 { margin-top: 0in; margin-bottom: 0in; border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: none; border-right: none; padding: 0.02in 0in; font-family: "Arial", serif; font-size: 10pt; page-break-before: auto; page-break-after: auto }
+    H3 { margin-top: 0in; margin-bottom: 0in; font-family: "Arial", serif; font-size: 10pt; font-style: normal; page-break-before: auto; page-break-after: auto }
+    H4 { margin-top: 0in; margin-bottom: 0in; font-family: "Arial", serif; font-style: italic; page-break-before: auto; page-break-after: auto }
+    P {
+	margin-top: 0.01in;
+	margin-bottom: 0.01in;
+	font-family: Arial, serif;
+	font-size: 10pt;
+	page-break-before: auto;
+	page-break-after: auto
+}
+    P.empty {}
+    P.list-1 { margin-left: 0.15in; text-indent: -0.15in }
+    P.list-2 { margin-left: 0.3in; text-indent: -0.15in }
+    P.list-3 { margin-left: 0.45in; text-indent: -0.15in }
+    P.list-4 { margin-left: 0.6in; text-indent: -0.15in }
+    P.list-5 { margin-left: 0.75in; text-indent: -0.15in }
+    P.list-6 { margin-left: 1.00in; text-indent: -0.15in }
+    PRE { border: 1px solid; background: #98AFC7; padding: 0.5em; margin-top: 0in; margin-bottom: 0in; margin-left: 0.25in}
+
+	CODE { background-color: #98AFC7;}
+blockquote { background-color: #98AFC7;}
+.twoColFixLt #container { 
+	width: 780px;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	background: #000000;
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	border: 1px solid #FFFFFF;
+	text-align: left; /* this overrides the text-align: center on the body element. */
+}
+.twoColFixLt #sidebar1 {
+	float: left; /* since this element is floated, a width must be given */
+	width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	background: #000000; /* the background color will be displayed for the length of the content in the column, but no further */
+	border: 1px solid #FFFFFF;
+	padding: 15px 10px 15px 20px;
+}
+.twoColFixLt #mainContent { 
+	margin: 0 0 0 250px; /* the left margin on this div element creates the column down the left side of the page - no matter how much content the sidebar1 div contains, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the #sidebar1 space when the content in #sidebar1 ends. */
+	padding: 0 20px 20px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+} 
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+body p {
+	font-size: 10pt;
+}
