@@ -27,10 +27,14 @@ import android.widget.Toast;
 public class VampireRaveFreeActivity extends Activity {
 	
 	private static final int MENU_HOME = 0;
-	private static final int MENU_MESCEN =  1;
-	private static final int MENU_DONATE =  2;
-	private static final int MENU_ABOUT =  3;
-	private static final int MENU_CHLG =  4;
+	private static final int MENU_REGIST = 1;
+	private static final int MENU_MESCEN =  2;
+	private static final int MENU_BELTHR =  3;
+	private static final int MENU_DASBOA =  4;
+	private static final int MENU_UPDSTA =  5;
+	private static final int MENU_DONATE =  6;
+	private static final int MENU_ABOUT =  7;
+	private static final int MENU_CHLG =  8;
 
 	
 	private         WebView myweb;
@@ -151,7 +155,11 @@ public class VampireRaveFreeActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		menu.add(0, MENU_HOME, 0, "Home");
+		menu.add(0, MENU_REGIST, 0, "Sign Up");
 		menu.add(0, MENU_MESCEN, 0, "Message Center");
+		menu.add(0, MENU_BELTHR, 0, "Beloved Threads");
+		menu.add(0, MENU_DASBOA, 0, "Dashboard");
+		menu.add(0, MENU_UPDSTA, 0, "Update Your Status");
 		menu.add(0, MENU_DONATE, 0, "Donate");
 		menu.add(0, MENU_ABOUT, 0, "About");
 		menu.add(0, MENU_CHLG, 0, "Change Log");
@@ -167,11 +175,32 @@ public class VampireRaveFreeActivity extends Activity {
 	case MENU_HOME:
 		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
 		myweb.loadUrl("http://vampirerave.com/");
+		
+		return true;
+	case MENU_REGIST:
+		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
+		myweb.loadUrl("http://www.VampireRave.com/signup.php?vampref=raziel23x");
+		
 
-	return true;
+		return true;
 	case MENU_MESCEN:
 		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
 		myweb.loadUrl("http://www.vampirerave.com/mc/messagecenter.php");
+		
+		return true;
+	case MENU_BELTHR:
+		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
+		myweb.loadUrl("http://www.vampirerave.com/forum/beloved_threads.php");
+
+		return true;
+	case MENU_DASBOA:
+		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
+		myweb.loadUrl("http://www.vampirerave.com/dashboard.php");
+
+		return true;
+	case MENU_UPDSTA:
+		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
+		myweb.loadUrl("http://www.vampirerave.com/update_status.php");
 
 	return true;
 	case MENU_DONATE:
