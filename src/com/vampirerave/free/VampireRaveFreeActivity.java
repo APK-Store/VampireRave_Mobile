@@ -23,6 +23,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
+import com.google.ads.*;
+
 
 public class VampireRaveFreeActivity extends Activity {
 	
@@ -74,7 +76,7 @@ public class VampireRaveFreeActivity extends Activity {
      	myweb.getSettings().setBuiltInZoomControls(true);
 
      	SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
-		isfirsttime=settings.getBoolean("isfirsttime", true);
+		isfirsttime=settings.getBoolean("isfirsttime", false);
 		if(isfirsttime)
 		{
 			SharedPreferences.Editor editor = settings.edit();
@@ -205,7 +207,7 @@ public class VampireRaveFreeActivity extends Activity {
 	return true;
 	case MENU_DONATE:
 		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("file:///android_asset/donate.html");
+		myweb.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JESXYWNJGHRAU");
 		
 	return true;
 	case MENU_ABOUT:
