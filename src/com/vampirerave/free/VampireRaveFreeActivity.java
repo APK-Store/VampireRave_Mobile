@@ -23,117 +23,109 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.google.ads.*;
-
-
 public class VampireRaveFreeActivity extends Activity {
-	
+
 	private static final int MENU_HOME = 0;
 	private static final int MENU_REGIST = 1;
-	private static final int MENU_MESCEN =  2;
-	private static final int MENU_BELTHR =  3;
-	private static final int MENU_DASBOA =  4;
-	private static final int MENU_UPDSTA =  5;
-	private static final int MENU_DONATE =  6;
-	private static final int MENU_ABOUT =  7;
-	private static final int MENU_CHLG =  8;
+	private static final int MENU_MESCEN = 2;
+	private static final int MENU_BELTHR = 3;
+	private static final int MENU_DASBOA = 4;
+	private static final int MENU_UPDSTA = 5;
+	private static final int MENU_DONATE = 6;
+	private static final int MENU_ABOUT = 7;
+	private static final int MENU_CHLG = 8;
 
-	
-	private         WebView myweb;
-	Boolean 		isfirsttime=false;
-	final Activity activity = this;   //added
-	
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) 
-    {
-    	
-        super.onCreate(savedInstanceState); 
-        
-        getWindow().requestFeature(Window.FEATURE_PROGRESS); 
-        setContentView(R.layout.main);     	
-        myweb = (WebView) findViewById(R.id.WebView);	
+	private WebView myweb;
+	Boolean isfirsttime = false;
+	final Activity activity = this; // added
 
-        myweb.setWebViewClient(new HelloWebViewClient());
-        
-        myweb.setWebChromeClient(new WebChromeClient() {
-        	@Override
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+
+		getWindow().requestFeature(Window.FEATURE_PROGRESS);
+		setContentView(R.layout.main);
+		myweb = (WebView) findViewById(R.id.WebView);
+
+		myweb.setWebViewClient(new HelloWebViewClient());
+
+		myweb.setWebChromeClient(new WebChromeClient() {
+			@Override
 			public void onProgressChanged(WebView view, int progress) {
-        	     // Activities and WebViews measure progress with different scales.
-        	     // The progress meter will automatically disappear when we reach 100%
-        	    activity.setProgress(progress * 100);
-        	   }
-        	 
-        });
-        
-        Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
+				// Activities and WebViews measure progress with different
+				// scales.
+				// The progress meter will automatically disappear when we reach
+				// 100%
+				activity.setProgress(progress * 100);
+			}
 
-     	myweb.loadUrl("http://vampirerave.com");
-     	
-     	myweb.getSettings().setJavaScriptEnabled(true);
-     	
-     	myweb.getSettings().setPluginsEnabled(true); 
-     	myweb.getSettings().setBuiltInZoomControls(true);
+		});
 
-     	SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
-		isfirsttime=settings.getBoolean("isfirsttime", false);
-		if(isfirsttime)
-		{
+		Toast.makeText(this, "Please wait while the page loads",
+				Toast.LENGTH_LONG).show();
+
+		myweb.loadUrl("http://vampirerave.com");
+
+		myweb.getSettings().setJavaScriptEnabled(true);
+
+		myweb.getSettings().setPluginsEnabled(true);
+		myweb.getSettings().setBuiltInZoomControls(true);
+
+		SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
+		isfirsttime = settings.getBoolean("isfirsttime", false);
+		if (isfirsttime) {
 			SharedPreferences.Editor editor = settings.edit();
 			editor.putBoolean("isfirsttime", false);
 			editor.commit();
-			downloadfileto("http://crazydroid.net23.net/cgi-bin/wryebashcounter.php", "/sdcard/wbrvclientid.txt"); 
-			Log.w("isfirsttime","isfirsttime is true");			
+			downloadfileto(
+					"http://crazydroid.net23.net/cgi-bin/wryebashcounter.php",
+					"/sdcard/wbrvclientid.txt");
+			Log.w("isfirsttime", "isfirsttime is true");
+		} else {
+			Log.w("isfirsttime", "isfirsttime is false");
 		}
-		else
-		{
-			Log.w("isfirsttime","isfirsttime is false");			
+
+	}
+
+	private class HelloWebViewClient extends WebViewClient {
+		@Override
+		public boolean shouldOverrideUrlLoading(WebView view, String url) {
+			view.loadUrl(url);
+			return true;
 		}
-     	
-     	
-     	
-    }
-    private class HelloWebViewClient extends WebViewClient 
-    {
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) 
-        {        	
-            view.loadUrl(url);
-            return true;
-        }
-        @Override
-        public void  onLoadResource  (WebView view, String url)
-        {
-         if(url.contains("action=trailer") || url.contains("action=video"))
-            {
-                Log.w("wryebash","trailer clicked:" + url);
-                Intent i = new Intent(Intent.ACTION_VIEW , Uri.parse(url) );
-                		     startActivity(i);
 
-            }
+		@Override
+		public void onLoadResource(WebView view, String url) {
+			if (url.contains("action=trailer") || url.contains("action=video")) {
+				Log.w("wryebash", "trailer clicked:" + url);
+				Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+				startActivity(i);
 
-        }
-    }
-    @Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) 
-    {
-        if ((keyCode == KeyEvent.KEYCODE_BACK) && myweb.canGoBack()) {
-            myweb.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-	public void downloadfileto(String fileurl, String filename) 
-	{
+			}
+
+		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK) && myweb.canGoBack()) {
+			myweb.goBack();
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	public void downloadfileto(String fileurl, String filename) {
 		String myString;
 		try {
-			FileOutputStream f = new FileOutputStream(filename);			
-			try  
-			{
+			FileOutputStream f = new FileOutputStream(filename);
+			try {
 				URL url = new URL(fileurl);
 				URLConnection urlConn = url.openConnection();
 				InputStream is = urlConn.getInputStream();
-				BufferedInputStream bis = new BufferedInputStream(is,8000);
+				BufferedInputStream bis = new BufferedInputStream(is, 8000);
 				int current = 0;
 				while ((current = bis.read()) != -1) {
 					f.write((byte) current);
@@ -143,19 +135,16 @@ public class VampireRaveFreeActivity extends Activity {
 			}
 			f.flush();
 			f.close();
-		} catch (FileNotFoundException e) 
-		{	
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) 
-		{
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/* Creates the menu items */
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
+	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, MENU_HOME, 0, "Home");
 		menu.add(0, MENU_REGIST, 0, "Sign Up");
 		menu.add(0, MENU_MESCEN, 0, "Message Center");
@@ -165,63 +154,69 @@ public class VampireRaveFreeActivity extends Activity {
 		menu.add(0, MENU_DONATE, 0, "Donate");
 		menu.add(0, MENU_ABOUT, 0, "About");
 		menu.add(0, MENU_CHLG, 0, "Change Log");
-    
+
 		return true;
 	}
-	
+
 	/* Handles item selections */
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-	switch (item.getItemId()) {
-	case MENU_HOME:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://vampirerave.com/");
-		
-		return true;
-	case MENU_REGIST:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://www.VampireRave.com/signup.php?vampref=raziel23x");
-		
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case MENU_HOME:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://vampirerave.com/");
 
-		return true;
-	case MENU_MESCEN:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://www.vampirerave.com/mc/messagecenter.php");
-		
-		return true;
-	case MENU_BELTHR:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://www.vampirerave.com/forum/beloved_threads.php");
+			return true;
+		case MENU_REGIST:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://www.VampireRave.com/signup.php?vampref=raziel23x");
 
-		return true;
-	case MENU_DASBOA:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://www.vampirerave.com/dashboard.php");
+			return true;
+		case MENU_MESCEN:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://www.vampirerave.com/mc/messagecenter.php");
 
-		return true;
-	case MENU_UPDSTA:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("http://www.vampirerave.com/update_status.php");
+			return true;
+		case MENU_BELTHR:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://www.vampirerave.com/forum/beloved_threads.php");
 
-	return true;
-	case MENU_DONATE:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JESXYWNJGHRAU");
-		
-	return true;
-	case MENU_ABOUT:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("file:///android_asset/about.html");
-		
-	return true;
-	case MENU_CHLG:
-		Toast.makeText(this, "Please wait while the page loads", Toast.LENGTH_LONG).show();
-		myweb.loadUrl("file:///android_asset/chlg.html");
+			return true;
+		case MENU_DASBOA:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://www.vampirerave.com/dashboard.php");
 
-	return true;
-	}
-	return false;
+			return true;
+		case MENU_UPDSTA:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("http://www.vampirerave.com/update_status.php");
+
+			return true;
+		case MENU_DONATE:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JESXYWNJGHRAU");
+
+			return true;
+		case MENU_ABOUT:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("file:///android_asset/about.html");
+
+			return true;
+		case MENU_CHLG:
+			Toast.makeText(this, "Please wait while the page loads",
+					Toast.LENGTH_LONG).show();
+			myweb.loadUrl("file:///android_asset/chlg.html");
+
+			return true;
+		}
+		return false;
 	}
 }
- 
